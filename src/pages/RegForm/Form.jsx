@@ -1,13 +1,18 @@
 import Button from "../../components/Button/Button";
-import ErrorFR from "./ErrorFR";
-import Hello from "./hello";
-import Input from "../../components/Input/Input";
+import Error from "./ErrorFR";
 
-function Form1() {
+import Input from "../../components/Input/Input";
+import Title from "../../components/Title/Title";
+import Card from "../../components/Card/Card";
+import { useNavigate } from "react-router-dom";
+
+function Form() {
+  const navigate = useNavigate();
+
   return (
-    <div className="form1">
+    <Card>
       <div>
-        <Hello />
+        <Title>Hello!</Title>
         <Input
           id="login"
           type="email"
@@ -22,14 +27,14 @@ function Form1() {
         />
       </div>
       <div>
-        <ErrorFR />
+        <Error />
       </div>
       <div className="buttonBox">
         <Button>Let`s go CHATING</Button>
-        <Button>Create an account</Button>
+        <Button onClick={() => navigate("/create")}>Create an account</Button>
       </div>
-    </div>
+    </Card>
   );
 }
 
-export default Form1;
+export default Form;
