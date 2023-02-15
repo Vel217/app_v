@@ -1,0 +1,14 @@
+.inputWrapper {
+  width: 280px;
+  height: 39px;
+  margin: 25px;
+  display: grid;
+}
+
+.input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 5px solid black;
+  width: 100%;
+}
