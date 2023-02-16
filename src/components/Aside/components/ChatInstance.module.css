@@ -1,0 +1,68 @@
+.chatWrap {
+  background-color: white;
+  display: grid;
+  grid:
+    "photo chatName time" 60px
+    / 65px 4fr 1fr;
+  gap: 0px 20px;
+  height: 60px;
+  border-radius: 5px;
+}
+.photo {
+  background-color: aquamarine;
+  border-radius: 100%;
+  grid-area: photo;
+  position: relative;
+  padding: 10px;
+  height: inherit;
+  width: inherit;
+}
+.chatName {
+  grid-area: chatName;
+  display: grid;
+  grid:
+    "nameMain" 1fr
+    "text" 1fr
+    / 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.time {
+  grid-area: time;
+  display: grid;
+  grid:
+    "dataTime" 1fr
+    "countMes" 1fr
+    / 1fr;
+  gap: 5px 0px;
+  grid-auto-flow: column;
+
+  justify-content: center;
+  align-content: space-around;
+  padding: 5px;
+  font-size: 10px;
+}
+
+.img {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+}
+
+.chatNameMain {
+  grid-area: nameMain;
+}
+.chatText {
+  grid-area: text;
+  font-size: 10px;
+}
+
+.dataTime {
+  grid-area: dataTime;
+}
+.countMes {
+  grid-area: countMes;
+}
