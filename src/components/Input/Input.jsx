@@ -9,7 +9,7 @@ function Input(props) {
           className={classes.input}
           type={props.type}
           placeholder={props.placeholder}
-        ></input>
+        />
       </label>
     </div>
   );

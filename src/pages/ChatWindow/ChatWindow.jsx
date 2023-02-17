@@ -6,12 +6,9 @@ import Windo from "./Windo";
 function ChatWindow() {
   return (
     <div className={classes.window}>
-      <div className={classes.aside}>
-        <Aside />
-      </div>
-      <div className={classes.windo}>
-        <Windo />
-      </div>
+      <Aside />
+
+      <Windo />
     </div>
   );
 }

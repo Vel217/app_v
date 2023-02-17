@@ -6,10 +6,10 @@ function Footer() {
   return (
     <div className={classes.footerWrap}>
       <div className={classes.img1}>
-        <img src={message} alt="message" width="25px"></img>
+        <img src={message} alt="message" width="25px" />
       </div>
       <div className={classes.img2}>
-        <img src={seting} alt="setting" width="25px"></img>
+        <img src={seting} alt="setting" width="25px" />
       </div>
     </div>
   );

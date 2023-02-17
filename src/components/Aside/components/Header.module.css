@@ -1,10 +1,9 @@
-.blockUp {
+.header {
   display: grid;
   grid:
     "input pic" 1fr
-    / 3fr 40px;
-  gap: 0px 30px;
-  padding-top: 5px;
+    / 1fr;
+  gap: 0px 20px;
 }
 
 .inputArea {
@@ -16,7 +15,7 @@
 }
 .pic {
   grid-area: pic;
-  margin-right: 0px;
+  margin: 0 5px 0;
 }
 .search {
   position: absolute;

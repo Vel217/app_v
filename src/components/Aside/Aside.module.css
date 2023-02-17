@@ -1,25 +1,28 @@
 .aside {
-  height: 800px;
+  height: 100%;
   display: grid;
   grid:
     "header" 40px
     "chats" 1fr
     "footer" 30px
     / 1fr;
+
   gap: 2px;
   grid-auto-flow: column;
 
   justify-content: center;
+  width: 320px;
+  min-width: 320px;
+  padding: 5px;
 }
 .header {
-  background-color: #004643;
   grid-area: header;
+  align-self: center;
 }
 .chats {
-  background-color: #004643;
   grid-area: chats;
 }
 .footer {
-  background-color: #004643;
   grid-area: footer;
+  align-self: center;
 }

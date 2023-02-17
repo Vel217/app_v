@@ -5,12 +5,7 @@ function ChatInstance() {
   return (
     <div className={classes.chatWrap}>
       <div className={classes.photo}>
-        <img
-          className={classes.img}
-          src={chatPeople}
-          alt="chatPeoplePhoto"
-          height="25px"
-        ></img>
+        <img src={chatPeople} alt="chatPeoplePhoto" height="25px" />
       </div>
       <div className={classes.chatName}>
         <div className={classes.chatNameMain}>Chat name</div>

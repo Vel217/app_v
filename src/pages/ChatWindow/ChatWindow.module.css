@@ -1,22 +1,4 @@
-* {
-  box-sizing: border-box;
-}
-body {
-  padding: 10px;
-}
 .window {
-  height: 810px;
-  display: grid;
-  grid:
-    "sidebar body" 1fr
-    / 1fr 2fr;
-  gap: 5px;
-}
-
-.windo {
-  grid-area: body;
-}
-
-.aside {
-  grid-area: sidebar;
+  height: 100%;
+  display: flex;
 }

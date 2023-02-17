@@ -4,25 +4,24 @@ import search from "../../../assets/search.svg";
 
 function Header() {
   return (
-    <div className={classes.blockUp}>
+    <div className={classes.header}>
       <div className={classes.inputArea}>
         <img
           className={classes.search}
           src={search}
           alt="search"
           height="15px"
-        ></img>
+        />
         <label id="search">
           <input
             className={classes.input}
             type="search"
             placeholder="Search ..."
-          ></input>
+          />
         </label>
       </div>
-      <div className={classes.pic}>
-        <img src={addPeople} alt="add" height="17px"></img>
-      </div>
+
+      <img className={classes.pic} src={addPeople} alt="add" height="17px" />
     </div>
   );
 }

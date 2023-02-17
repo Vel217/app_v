@@ -8,15 +8,12 @@ function Aside() {
   return (
     <div className={classes.aside}>
       <div className={classes.header}>
-        {" "}
         <Header />
       </div>
       <div className={classes.chats}>
-        {" "}
         <Chats />
       </div>
       <div className={classes.footer}>
-        {" "}
         <Footer />
       </div>
     </div>
