@@ -1,0 +1,31 @@
+.wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004643;
+  height: 45px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+.photo {
+  justify-content: center;
+  align-items: center;
+  background-color: aquamarine;
+  border-radius: 100%;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+.space {
+  flex-grow: 1;
+  color: white;
+}
+.setting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px 0 10px;
+}
