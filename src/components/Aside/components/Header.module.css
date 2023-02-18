@@ -1,0 +1,28 @@
+.header {
+  display: grid;
+  grid:
+    "input pic" 1fr
+    / 1fr;
+  gap: 0px 20px;
+}
+
+.inputArea {
+  grid-area: input;
+  background-color: rgb(255, 255, 255);
+  padding-left: 30px;
+  position: relative;
+  border-radius: 10px;
+}
+.pic {
+  grid-area: pic;
+  margin: 0 5px 0;
+}
+.search {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.input {
+  border: none;
+  width: 95%;
+}

@@ -1,0 +1,7 @@
+.footerWrap {
+  display: flex;
+  gap: 16px;
+
+  justify-content: space-around;
+  align-items: center;
+}

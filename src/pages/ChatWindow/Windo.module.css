@@ -1,0 +1,16 @@
+.windo {
+  background-color: aliceblue;
+  height: 100%;
+  flex-grow: 1;
+  display: grid;
+  grid:
+    ". . ." 1fr
+    ". text ." 1fr
+    ". . ." 1fr
+    / 1fr 1fr 1fr;
+  gap: 8px;
+}
+.text {
+  grid-area: text;
+  font-size: x-large;
+}

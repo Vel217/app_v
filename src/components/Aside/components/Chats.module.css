@@ -1,0 +1,8 @@
+.chatsWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background-color: #004643;
+  margin: 0px;
+  padding: 2px;
+}

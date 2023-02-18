@@ -5,6 +5,7 @@ import Input from "../../components/Input/Input";
 import Title from "../../components/Title/Title";
 import Card from "../../components/Card/Card";
 import { useNavigate } from "react-router-dom";
+import classes from "../RegFormMain/RegFormMain.module.css";
 
 function Form() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function Form() {
       <div>
         <Error />
       </div>
-      <div className="buttonBox">
+      <div className={classes.buttonBox}>
         <Button>Let`s go CHATING</Button>
         <Button onClick={() => navigate("/create")}>Create an account</Button>
       </div>
