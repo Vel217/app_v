@@ -3,8 +3,7 @@ import classes from "./Button.module.css";
 function Button({ children, ...props }) {
   return (
     <button {...props} className={classes.buttonFR}>
-      {" "}
-      {children}{" "}
+      {children}
     </button>
   );
 }

@@ -19,7 +19,6 @@ function ChatFrame() {
             Animi, laboriosam ipsam.
           </Message>
           <Message isPush={true}>
-            {" "}
             Hello! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Animi, laboriosam ipsam.
           </Message>

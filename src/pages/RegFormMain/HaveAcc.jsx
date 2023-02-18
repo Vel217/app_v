@@ -6,7 +6,7 @@ function HaveAcc() {
   const navigate = useNavigate();
   return (
     <div>
-      Already have an account?{" "}
+      Already have an account?
       <div className={classes.nav} onClick={() => navigate("/")}>
         Sign in
       </div>
