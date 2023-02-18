@@ -6,7 +6,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RegForm from "./pages/RegForm/Form";
 import ChatWindow from "./pages/ChatWindow/ChatWindow";
-import ChatFrame from "./pages/ChatFrame";
+import ChatFrame from "./components/ChatFrame/ChatFrame";
 
 const router = createBrowserRouter([
   {

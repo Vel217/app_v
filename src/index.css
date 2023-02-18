@@ -15,21 +15,7 @@ body {
   height: 100%;
 }
 
-.buttonBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.errorfr {
-  border: 2px solid red;
-  text-align: center;
-  margin: 10px;
-  border-radius: 10px;
-  /* display: none; */
-}
-
-.nav {
-  text-decoration: underline;
-  color: blue;
+p {
+  margin: 0;
+  padding: 0;
 }

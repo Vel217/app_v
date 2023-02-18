@@ -1,19 +1,17 @@
+import AvatarPhoto from "../../AvatarPhoto/AvatarPhoto";
 import classes from "./ChatInstance.module.css";
-import chatPeople from "../../../assets/chatPeople.svg";
 
 function ChatInstance() {
   return (
     <div className={classes.chatWrap}>
-      <div className={classes.photo}>
-        <img src={chatPeople} alt="chatPeoplePhoto" height="25px" />
-      </div>
+      <AvatarPhoto />
       <div className={classes.chatName}>
-        <div className={classes.chatNameMain}>Chat name</div>
-        <div className={classes.chatText}>Chat text</div>
+        <p className={classes.chatNameMain}>Chat name</p>
+        <p className={classes.chatText}>Chat name</p>
       </div>
       <div className={classes.time}>
-        <div className={classes.dataTime}>16 feb 2022</div>
-        <div className={classes.countMes}> 1 mes</div>
+        <p className={classes.dataTime}>16 feb 2022</p>
+        <p className={classes.countMes}> 1 mes</p>
       </div>
     </div>
   );

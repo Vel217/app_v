@@ -5,31 +5,23 @@
     "photo chatName time" 60px
     / 65px 4fr 1fr;
   gap: 0px 20px;
-  height: 60px;
+  height: 65px;
   border-radius: 5px;
+  padding: 7px 5px;
 }
-.photo {
-  background-color: aquamarine;
-  border-radius: 100%;
-  grid-area: photo;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 7px;
-  width: 50px;
-  height: 50px;
-}
+
 .chatName {
   grid-area: chatName;
   display: grid;
   grid:
-    "nameMain" 1fr
-    "text" 1fr
+    "nameMain" 15px
+    "text" 15px
     / 1fr;
-  gap: 0px 0px;
+  gap: 10px;
   grid-auto-flow: column;
   align-items: center;
   justify-content: center;
+  align-content: center;
 }
 
 .time {
@@ -54,6 +46,9 @@
 .chatText {
   grid-area: text;
   font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dataTime {

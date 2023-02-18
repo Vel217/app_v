@@ -1,0 +1,7 @@
+.errorfr {
+  border: 2px solid red;
+  text-align: center;
+  margin: 10px;
+  border-radius: 10px;
+  display: none;
+}

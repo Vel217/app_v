@@ -6,14 +6,13 @@ import classes from "./SideBarDown.module.css";
 function SideBarDown() {
   return (
     <div className={classes.wrap}>
-      <div className={classes.input}>
-        <input
-          className={classes.inputText}
-          id="textMessage"
-          type="text"
-          placeholder="put your text here, ubludok"
-        ></input>
-      </div>
+      <textarea
+        className={classes.inputText}
+        id="textMessage"
+        rows="2"
+        placeholder="put your text here, ubludok"
+      />
+
       <Button> Send</Button>
     </div>
   );

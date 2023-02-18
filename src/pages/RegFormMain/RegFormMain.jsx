@@ -4,6 +4,7 @@ import HaveAcc from "./HaveAcc";
 
 import Title from "../../components/Title/Title";
 import Card from "../../components/Card/Card";
+import classes from "./RegFormMain.module.css";
 
 function RegFormMain() {
   return (
@@ -43,7 +44,7 @@ function RegFormMain() {
         />
       </div>
 
-      <div className="buttonBox">
+      <div className={classes.buttonBox}>
         <Button>CREATE</Button>
       </div>
       <HaveAcc />
