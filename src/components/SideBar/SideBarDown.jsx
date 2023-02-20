@@ -13,7 +13,7 @@ function SideBarDown() {
         placeholder="put your text here, ubludok"
       />
 
-      <Button> Send</Button>
+      <Button isOrange={true}> Send</Button>
     </div>
   );
 }

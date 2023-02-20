@@ -1,27 +1,27 @@
 import classes from "./Header.module.css";
 import addPeople from "../../../assets/addPeople.svg";
-import search from "../../../assets/search.svg";
+import Modal from "../../Modal/Modal";
+import { useState } from "react";
+import CreateChat from "../../ModalComponents/CreateChat";
+import Search from "../../Input/Search";
 
 function Header() {
+  const [modalActive, setModalActive] = useState(false);
+
   return (
     <div className={classes.header}>
-      <div className={classes.inputArea}>
-        <img
-          className={classes.search}
-          src={search}
-          alt="search"
-          height="15px"
-        />
-        <label id="search">
-          <input
-            className={classes.input}
-            type="search"
-            placeholder="Search ..."
-          />
-        </label>
-      </div>
+      <Search />
+      <img
+        className={classes.pic}
+        src={addPeople}
+        alt="add"
+        height="17px"
+        onClick={() => setModalActive(true)}
+      />
 
-      <img className={classes.pic} src={addPeople} alt="add" height="17px" />
+      <Modal active={modalActive} setActive={setModalActive}>
+        <CreateChat />
+      </Modal>
     </div>
   );
 }

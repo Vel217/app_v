@@ -1,16 +1,18 @@
-import Input from "../../components/Input/Input";
+import React from "react";
+import AvatarPhoto from "../../components/AvatarPhoto/AvatarPhoto";
 import Button from "../../components/Button/Button";
-import HaveAcc from "./HaveAcc";
+import Input from "../../components/Input/Input";
 
-import Title from "../../components/Title/Title";
-import Card from "../../components/Card/Card";
-import classes from "./RegFormMain.module.css";
+import classes from "./ChangeForm.module.css";
 
-function RegFormMain() {
+function ChangeForm() {
   return (
-    <Card>
-      <div>
-        <Title>Create an account:</Title>
+    <div className={classes.wrap}>
+      <div className={classes.avatar}>
+        <AvatarPhoto />
+        <p className={classes.profileName}> My Name</p>
+      </div>
+      <div className={classes.form}>
         <Input
           id="login"
           type="email"
@@ -43,13 +45,12 @@ function RegFormMain() {
           title="Password"
         />
       </div>
-
-      <div className={classes.buttonBox}>
-        <Button> isOrange={true}CREATE</Button>
+      <div className={classes.buttons}>
+        <Button isOrange={true}>Change Profile</Button>
+        <Button isRed={true}> Logout</Button>
       </div>
-      <HaveAcc />
-    </Card>
+    </div>
   );
 }
 
-export default RegFormMain;
+export default ChangeForm;

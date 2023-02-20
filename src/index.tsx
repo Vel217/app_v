@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RegForm from "./pages/RegForm/Form";
 import ChatWindow from "./pages/ChatWindow/ChatWindow";
 import ChatFrame from "./components/ChatFrame/ChatFrame";
+import ChangeProfile from "./pages/ChangeProfile/ChangeProfile";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/chat/start",
     element: <ChatFrame />,
+  },
+  {
+    path: "/chat/change_profile",
+    element: <ChangeProfile />,
   },
 ]);
 

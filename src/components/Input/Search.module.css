@@ -1,0 +1,16 @@
+.inputArea {
+  grid-area: input;
+  background-color: rgb(255, 255, 255);
+  padding-left: 30px;
+  position: relative;
+  border-radius: 10px;
+}
+.search {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.input {
+  border: none;
+  width: 95%;
+}
