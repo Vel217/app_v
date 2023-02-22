@@ -5,8 +5,11 @@ import HaveAcc from "./HaveAcc";
 import Title from "../../components/Title/Title";
 import Card from "../../components/Card/Card";
 import classes from "./RegFormMain.module.css";
+import { useNavigate } from "react-router-dom";
 
 function RegFormMain() {
+  const navigate = useNavigate();
+
   return (
     <Card>
       <div>
@@ -45,7 +48,9 @@ function RegFormMain() {
       </div>
 
       <div className={classes.buttonBox}>
-        <Button> isOrange={true}CREATE</Button>
+        <Button onClick={() => navigate("/chat")} isOrange={true}>
+          CREATE
+        </Button>
       </div>
       <HaveAcc />
     </Card>

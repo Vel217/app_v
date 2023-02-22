@@ -1,23 +1,23 @@
 import classes from "./Button.module.css";
 
-function Button(prop) {
+function Button({ children, ...props }) {
   // TODO: use enums
   const getClassColor = () => {
-    if (prop.isGreen) {
+    if (props.isGreen) {
       return classes.buttonGreen;
     }
 
-    if (prop.isOrange) {
+    if (props.isOrange) {
       return classes.buttonOrange;
     }
 
-    if (prop.isRed) {
+    if (props.isRed) {
       return classes.buttonRed;
     }
   };
   return (
-    <button className={`${classes.buttonFR} ${getClassColor()}`}>
-      {prop.children}
+    <button {...props} className={`${classes.buttonFR} ${getClassColor()}`}>
+      {children}
     </button>
   );
 }

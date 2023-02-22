@@ -11,10 +11,6 @@ import ChangeProfile from "./pages/ChangeProfile/ChangeProfile";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <RegForm />,
-  },
-  {
     path: "/create",
     element: <RegFormMain />,
   },
@@ -29,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/chat/change_profile",
     element: <ChangeProfile />,
+  },
+  {
+    path: "/",
+    element: <RegForm />,
   },
 ]);
 

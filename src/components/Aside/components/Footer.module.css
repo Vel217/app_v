@@ -5,3 +5,7 @@
   justify-content: space-around;
   align-items: center;
 }
+.buttonSetting {
+  background-color: #004643;
+  border: none;
+}

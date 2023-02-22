@@ -31,7 +31,9 @@ function Form() {
         <Error />
       </div>
       <div className={classes.buttonBox}>
-        <Button isOrange={true}>Let`s go CHATING</Button>
+        <Button isOrange={true} onClick={() => navigate("/chat")}>
+          Let`s go CHATING
+        </Button>
         <Button isGreen={true} onClick={() => navigate("/create")}>
           Create an account
         </Button>

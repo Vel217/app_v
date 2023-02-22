@@ -1,6 +1,5 @@
 .inputArea {
-  grid-area: input;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   padding-left: 30px;
   position: relative;
   border-radius: 10px;
