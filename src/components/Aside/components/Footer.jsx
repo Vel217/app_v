@@ -8,12 +8,17 @@ function Footer() {
   return (
     <div className={classes.footerWrap}>
       <div className={classes.img1}>
-        <img src={message} alt="message" width="25px" />
+        <button
+          className={classes.buttonSetting}
+          onClick={() => navigate("/chat/setting")}
+        >
+          <img src={message} alt="message" width="25px" />
+        </button>
       </div>
       <div className={classes.img2}>
         <button
           className={classes.buttonSetting}
-          onClick={() => navigate("/chat/change_profile")}
+          onClick={() => navigate("/chat/profile")}
         >
           <img src={seting} alt="setting" width="25px" />
         </button>

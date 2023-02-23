@@ -1,5 +1,3 @@
-import React from "react";
-import Aside from "../Aside/Aside";
 import Message from "../Message/Message";
 
 import SideBarDown from "../SideBar/SideBarDown";
@@ -9,7 +7,6 @@ import classes from "./ChatFrame.module.css";
 function ChatFrame() {
   return (
     <div className={classes.window}>
-      <Aside />
       <div className={classes.rightColumn}>
         <SideBarUp />
 
