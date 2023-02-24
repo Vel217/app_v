@@ -3,7 +3,7 @@ import Error from "./ErrorFR";
 
 import Input from "../../components/Input/Input";
 import Title from "../../components/Title/Title";
-import Card from "../../components/Card/Card";
+
 import { useNavigate } from "react-router-dom";
 import classes from "../RegFormMain/RegFormMain.module.css";
 
@@ -11,7 +11,7 @@ function Form() {
   const navigate = useNavigate();
 
   return (
-    <Card>
+    <>
       <div>
         <Title>Hello!</Title>
         <Input
@@ -38,7 +38,7 @@ function Form() {
           Create an account
         </Button>
       </div>
-    </Card>
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
 import classes from "./Header.module.css";
-import addPeople from "../../../assets/addPeople.svg";
+import addPeopleImg from "../../../assets/addPeople.svg";
 import Modal from "../../Modal/Modal";
 import { useState } from "react";
 import CreateChat from "../../ModalComponents/CreateChat";
@@ -10,14 +10,16 @@ function Header() {
 
   return (
     <div className={classes.header}>
-      <Search />
-      <img
-        className={classes.pic}
-        src={addPeople}
-        alt="add"
-        height="17px"
-        onClick={() => setModalActive(true)}
-      />
+      <Search isSearch={true} />
+      <button>
+        <img
+          className={classes.pic}
+          src={addPeopleImg}
+          alt="add"
+          height="17px"
+          onClick={() => setModalActive(true)}
+        />
+      </button>
 
       <Modal active={modalActive} setActive={setModalActive}>
         <CreateChat />

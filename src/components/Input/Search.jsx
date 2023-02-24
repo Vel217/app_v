@@ -1,16 +1,25 @@
 import React from "react";
 import classes from "./Search.module.css";
-import search from "../../assets/search.svg";
+import searchImg from "../../assets/search.svg";
 
-function Search() {
+function Search(props) {
   return (
     <div className={classes.inputArea}>
-      <img className={classes.search} src={search} alt="search" height="15px" />
-      <label id="search">
+      <label>
+        {props.isSearch && (
+          <img
+            className={classes.searchImg}
+            src={searchImg}
+            alt="search"
+            height="15px"
+          />
+        )}
         <input
-          className={classes.input}
-          type="search"
-          placeholder="Search ..."
+          className={`${classes.input} ${
+            props.isSearch ? classes.inputSearch : classes.inputText
+          }`}
+          type="text"
+          placeholder={props.isSearch ? "Search ..." : "name of your chat"}
         />
       </label>
     </div>

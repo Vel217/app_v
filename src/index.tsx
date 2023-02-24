@@ -4,14 +4,19 @@ import RegFormMain from "./pages/RegFormMain/RegFormMain";
 import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RegForm from "./pages/RegForm/Form";
+
 import ChatWindow from "./pages/ChatWindow/ChatWindow";
 import ChatFrame from "./components/ChatFrame/ChatFrame";
-import ChangeProfile from "./pages/ChangeProfile/ChangeProfile";
-import Windo from "./pages/ChatWindow/Windo";
-import ChangeProfileForm from "./pages/ChangeProfile/ChangeProfileForm";
-import ChangeForm from "./pages/ChangeProfile/ChangeForm";
-import ChatSetting from "./pages/ChatSetting/ChatSetting";
+import StartChat from "./pages/ChatWindow/StartChat";
+import ChangeProfileForm from "./pages/Profile/ChangeProfileForm";
+
+import ChatSettingForm from "./pages/ChatSetting/ChatSettingForm";
+import SettingWrap from "./components/SettingWrap/SettingWrap";
+import Profile from "./pages/Profile/Profile";
+import Error404 from "./pages/404/Error404";
+import Error500 from "./pages/500/Error500";
+import Form from "./pages/RegForm/Form";
+import Card from "./components/Card/Card";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Windo />,
+        element: <StartChat />,
       },
       {
         path: "start",
@@ -28,16 +33,22 @@ const router = createBrowserRouter([
       },
       {
         path: "setting",
-        element: <ChatSetting />,
+        element: <SettingWrap />,
+        children: [
+          {
+            path: "",
+            element: <ChatSettingForm />,
+          },
+        ],
       },
 
       {
         path: "profile",
-        element: <ChangeProfile />,
+        element: <SettingWrap />,
         children: [
           {
             path: "",
-            element: <ChangeForm />,
+            element: <Profile />,
           },
           {
             path: "change",
@@ -48,11 +59,23 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/error404",
+    element: <Error404 />,
+  },
+  {
+    path: "/error500",
+    element: <Error500 />,
+  },
+  {
     path: "/",
-    element: <RegForm />,
+    element: <Card />,
     children: [
       {
-        path: "create",
+        path: "",
+        element: <Form />,
+      },
+      {
+        path: "/create",
         element: <RegFormMain />,
       },
     ],

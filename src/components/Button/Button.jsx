@@ -16,7 +16,10 @@ function Button({ children, ...props }) {
     }
   };
   return (
-    <button {...props} className={`${classes.buttonFR} ${getClassColor()}`}>
+    <button
+      onClick={props.onClick}
+      className={`${classes.button} ${getClassColor()}`}
+    >
       {children}
     </button>
   );

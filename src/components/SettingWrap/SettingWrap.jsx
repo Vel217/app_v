@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 
-import classes from "./ChangeProfile.module.css";
+import classes from "./SettingWrap.module.css";
 
-function ChangeProfile() {
+function SettingWrap() {
   return (
     <div className={classes.wrap}>
       <div className={classes.changeArea}>
@@ -12,4 +12,4 @@ function ChangeProfile() {
   );
 }
 
-export default ChangeProfile;
+export default SettingWrap;

@@ -2,10 +2,10 @@ import AvatarPhoto from "../../components/AvatarPhoto/AvatarPhoto";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
-import classes from "./ChangeForm.module.css";
+import classes from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
 
-function ChangeForm() {
+function Profile(props) {
   const navigate = useNavigate();
   return (
     <div className={classes.wrap}>
@@ -19,55 +19,59 @@ function ChangeForm() {
           type="email"
           placeholder="any.any@mail.com"
           title="Email"
-          disabled="disabled"
+          disabled={props.isChange ? null : "disabled"}
         />
         <Input
           id="login"
           type="text"
           placeholder="LoginName"
           title="Login"
-          disabled="disabled"
+          disabled={props.isChange ? null : "disabled"}
         />
         <Input
           id="firstName"
           type="text"
           placeholder="First Name"
           title="First Name"
-          disabled="disabled"
+          disabled={props.isChange ? null : "disabled"}
         />
         <Input
           id="lastName"
           type="text"
           placeholder="Last Name"
           title="Last Name"
-          disabled="disabled"
+          disabled={props.isChange ? null : "disabled"}
         />
         <Input
           id="phoneNumber"
           type="tel"
           placeholder="+9(999)999-99-99"
           title="Phone"
-          disabled="disabled"
+          disabled={props.isChange ? null : "disabled"}
         />
-        <Input
-          id="passCreate"
-          type="password"
-          placeholder="*************"
-          title="Password"
-          disabled="disabled"
-        />
+        {props.isChange && (
+          <Input
+            id="passCreate"
+            type="password"
+            placeholder="*************"
+            title="Password"
+          />
+        )}
       </div>
       <div className={classes.buttons}>
-        <Button
-          isOrange={true}
-          onClick={() => navigate("/chat/profile/change")}
-        >
-          Change Profile
-        </Button>
-        <Button isRed={true}> Logout</Button>
+        {!props.isChange && (
+          <Button
+            isOrange={true}
+            onClick={() => navigate("/chat/profile/change")}
+          >
+            Change Profile
+          </Button>
+        )}
+        {!props.isChange && <Button isRed={true}> Logout</Button>}
+        {props.isChange && <Button isOrange={true}>Save</Button>}
       </div>
     </div>
   );
 }
 
-export default ChangeForm;
+export default Profile;

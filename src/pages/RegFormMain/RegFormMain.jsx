@@ -3,7 +3,7 @@ import Button from "../../components/Button/Button";
 import HaveAcc from "./HaveAcc";
 
 import Title from "../../components/Title/Title";
-import Card from "../../components/Card/Card";
+
 import classes from "./RegFormMain.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,7 @@ function RegFormMain() {
   const navigate = useNavigate();
 
   return (
-    <Card>
+    <>
       <div>
         <Title>Create an account:</Title>
         <Input
@@ -53,7 +53,7 @@ function RegFormMain() {
         </Button>
       </div>
       <HaveAcc />
-    </Card>
+    </>
   );
 }
 

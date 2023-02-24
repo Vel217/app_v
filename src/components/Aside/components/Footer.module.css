@@ -1,11 +1,11 @@
-.footerWrap {
+.wrap {
   display: flex;
   gap: 16px;
 
   justify-content: space-around;
   align-items: center;
 }
-.buttonSetting {
+.button {
   background-color: #004643;
   border: none;
 }
