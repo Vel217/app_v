@@ -1,0 +1,30 @@
+.inputArea {
+  background-color: white;
+
+  position: relative;
+  border-radius: 10px;
+}
+.searchImg {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+}
+.input {
+  width: 95%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.inputSearch {
+  border: none;
+  padding-left: 30px;
+  border-radius: 10px;
+}
+.inputText {
+  border: 1px solis black;
+  min-width: 200px;
+  border-radius: 5px;
+}

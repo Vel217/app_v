@@ -1,6 +1,6 @@
 import classes from "./Message.module.css";
 
-import chatPeople from "../../assets/chatPeople.svg";
+import chatPeopleImg from "../../assets/chatPeople.svg";
 
 function Message(prop) {
   return (
@@ -10,7 +10,7 @@ function Message(prop) {
       } `}
     >
       <img
-        src={chatPeople}
+        src={chatPeopleImg}
         className={classes.message_avatar}
         alt="avatar"
         height="20px"

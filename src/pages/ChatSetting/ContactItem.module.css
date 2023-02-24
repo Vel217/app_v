@@ -1,11 +1,5 @@
 .wrap {
   display: flex;
-  gap: 16px;
-
   justify-content: space-around;
   align-items: center;
-}
-.button {
-  background-color: #004643;
-  border: none;
 }

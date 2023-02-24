@@ -1,16 +1,22 @@
 import classes from "./Footer.module.css";
-import message from "../../../assets/message.svg";
-import seting from "../../../assets/setting.svg";
+import messageImg from "../../../assets/message.svg";
+import settingImg from "../../../assets/setting.svg";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
+  const navigate = useNavigate();
   return (
-    <div className={classes.footerWrap}>
-      <div className={classes.img1}>
-        <img src={message} alt="message" width="25px" />
-      </div>
-      <div className={classes.img2}>
-        <img src={seting} alt="setting" width="25px" />
-      </div>
+    <div className={classes.wrap}>
+      <button className={classes.button} onClick={() => navigate("/chat")}>
+        <img src={messageImg} alt="message" width="25px" />
+      </button>
+
+      <button
+        className={classes.button}
+        onClick={() => navigate("/chat/profile")}
+      >
+        <img src={settingImg} alt="setting" width="25px" />
+      </button>
     </div>
   );
 }

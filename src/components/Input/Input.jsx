@@ -9,6 +9,7 @@ function Input(props) {
           className={classes.input}
           type={props.type}
           placeholder={props.placeholder}
+          disabled={props.disabled}
         />
       </label>
     </div>

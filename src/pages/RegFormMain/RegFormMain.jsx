@@ -3,12 +3,15 @@ import Button from "../../components/Button/Button";
 import HaveAcc from "./HaveAcc";
 
 import Title from "../../components/Title/Title";
-import Card from "../../components/Card/Card";
+
 import classes from "./RegFormMain.module.css";
+import { useNavigate } from "react-router-dom";
 
 function RegFormMain() {
+  const navigate = useNavigate();
+
   return (
-    <Card>
+    <>
       <div>
         <Title>Create an account:</Title>
         <Input
@@ -45,10 +48,12 @@ function RegFormMain() {
       </div>
 
       <div className={classes.buttonBox}>
-        <Button>CREATE</Button>
+        <Button onClick={() => navigate("/chat")} isOrange={true}>
+          CREATE
+        </Button>
       </div>
       <HaveAcc />
-    </Card>
+    </>
   );
 }
 

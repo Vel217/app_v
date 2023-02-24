@@ -1,14 +1,14 @@
-import React from "react";
+import { Outlet } from "react-router-dom";
 import Aside from "../../components/Aside/Aside";
 import classes from "./ChatWindow.module.css";
-import Windo from "./Windo";
 
 function ChatWindow() {
   return (
     <div className={classes.window}>
       <Aside />
-
-      <Windo />
+      <div className={classes.otherContent}>
+        <Outlet />
+      </div>
     </div>
   );
 }
