@@ -1,6 +1,7 @@
 import classes from "./Message.module.css";
 
 import chatPeopleImg from "../../assets/chatPeople.svg";
+import { login } from "../../api/chat-api.js";
 
 function Message(prop) {
   return (
@@ -15,6 +16,7 @@ function Message(prop) {
         alt="avatar"
         height="20px"
       ></img>
+      <button onClick={() => login()}>get response</button>
 
       <p className={classes.message_text}>{prop.children}</p>
 
