@@ -5,6 +5,7 @@ function Input({
   id,
   value,
   onChange,
+  onKeyUp,
   onBlur,
   type,
   placeholder,
@@ -20,14 +21,16 @@ function Input({
           onInput={(e) => {
             onChange(e.target.value);
           }}
+          onKeyUp={onKeyUp}
           onBlur={onBlur}
           className={classes.input}
           type={type}
           placeholder={placeholder}
           disabled={disabled}
+          required="required"
         />
       </label>
-      {!!errorText && <p>{errorText}</p>}
+      {!!errorText && <p className={classes.errorText}>{errorText}</p>}
     </div>
   );
 }

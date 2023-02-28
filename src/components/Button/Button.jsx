@@ -19,7 +19,9 @@ function Button({ children, ...props }) {
     <button
       onClick={props.onClick}
       className={`${classes.button} ${getClassColor()}`}
+      disabled={props.disabled}
     >
+      {props.disabled}
       {children}
     </button>
   );

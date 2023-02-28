@@ -20,10 +20,10 @@ function RegFormMain() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const [emailErr, setEmailErr] = useState(false);
-  const [phoneErr, setPhoneErr] = useState(false);
-  const [nameFErr, setFNameError] = useState(false);
-  const [nameSErr, setSNameError] = useState(false);
+  const [emailErr, setEmailErr] = useState(true);
+  const [phoneErr, setPhoneErr] = useState(true);
+  const [nameFErr, setFNameError] = useState(true);
+  const [nameSErr, setSNameError] = useState(true);
 
   const click = async () => {
     const host = "https://ya-praktikum.tech";
@@ -51,6 +51,9 @@ function RegFormMain() {
 
     if (response.status === 200) {
       navigate("/chat");
+    }
+    if (response.status === 409) {
+      alert("Login already exists");
     } else {
       console.log("pup");
     }
@@ -66,29 +69,35 @@ function RegFormMain() {
   const validatePhone = () => {
     if (!validPhone.test(phone)) {
       setPhoneErr(true);
+      console.log("123");
     } else {
       setPhoneErr(false);
+      console.log("456");
     }
   };
   const validateFName = () => {
-    console.log("678");
     if (!validFName.test(firstName)) {
       setFNameError(true);
-      console.log("91011");
     } else {
       setFNameError(false);
-      console.log("121314");
     }
   };
   const validateSName = () => {
-    console.log("123");
     if (!validSName.test(secondName)) {
       setSNameError(true);
-      console.log("345");
     } else {
       setSNameError(false);
     }
   };
+
+  // if (
+  //   (!setEmailErr && !setPhoneErr && !setFNameError && !setSNameError) ===
+  //   disabled
+  // ) {
+  //   setDisabled(true);
+  // } else {
+  //   setDisabled(false);
+  // }
 
   return (
     <>
@@ -101,8 +110,8 @@ function RegFormMain() {
           placeholder="any.any@mail.com"
           title="Email"
           name="email"
-          onBlur={validateEmail}
-          errorText={emailErr ? "Your email is invalid" : ""}
+          onKeyUp={validateEmail}
+          errorText={email === "" || !emailErr ? "" : "Your email is invalid"}
         />
 
         <Input
@@ -120,8 +129,10 @@ function RegFormMain() {
           placeholder="First Name"
           title="First Name"
           name="first_name"
-          onBlur={validateFName}
-          errorText={nameFErr ? "Your first name is invalid" : ""}
+          onKeyUp={validateFName}
+          errorText={
+            firstName === "" || !nameFErr ? "" : "Your first name is invalid"
+          }
         />
         <Input
           value={secondName}
@@ -130,8 +141,10 @@ function RegFormMain() {
           placeholder="Last Name"
           title="Last Name"
           name="second_name"
-          onBlur={validateSName}
-          errorText={nameSErr ? "Your last name is invalid" : ""}
+          onKeyUp={validateSName}
+          errorText={
+            secondName === "" || !nameSErr ? "" : "Your last name is invalid"
+          }
         />
         <Input
           value={phone}
@@ -140,8 +153,8 @@ function RegFormMain() {
           placeholder="In format '9(999)999-99-99'"
           title="Phone"
           name="phone"
-          onBlur={validatePhone}
-          errorText={phoneErr ? "Your phone is invalid" : ""}
+          onKeyUp={validatePhone}
+          errorText={phone === "" || !phoneErr ? "" : "Your phone is invalid"}
         />
 
         <Input
@@ -151,11 +164,23 @@ function RegFormMain() {
           placeholder="*************"
           title="Password"
           name="password"
+          required={true}
         />
       </div>
 
       <div className={classes.buttonBox}>
-        <Button onClick={click} isOrange={true}>
+        <Button
+          onClick={click}
+          isOrange={true}
+          disabled={
+            emailErr ||
+            phoneErr ||
+            nameFErr ||
+            nameSErr ||
+            !(password.length > 1) ||
+            !(login.length > 1)
+          }
+        >
           CREATE
         </Button>
       </div>

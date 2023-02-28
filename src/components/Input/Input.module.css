@@ -12,6 +12,6 @@
   border-bottom: 5px solid black;
   width: 100%;
 }
-p {
+.errorText {
   color: rgb(241, 116, 116);
 }
