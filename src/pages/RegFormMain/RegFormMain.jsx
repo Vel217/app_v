@@ -50,11 +50,8 @@ function RegFormMain() {
   };
 
   const validateEmail = () => {
-    if (!validEmail.test(email)) {
-      setEmailErr(true);
-    } else {
-      setEmailErr(false);
-    }
+    const isEmailValid = validEmail.test(email);
+    setEmailErr(!isEmailValid);
   };
   const validatePhone = () => {
     if (!validPhone.test(phone)) {

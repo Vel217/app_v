@@ -21,10 +21,10 @@ function Form() {
       }
       if (res.status === 401) {
         setErrorBlock(true);
+        setLogin("");
+        setPassword("");
       }
     });
-    setLogin("");
-    setPassword("");
   };
 
   return (
@@ -37,7 +37,6 @@ function Form() {
           onChange={setLogin}
           name="login"
           type="text"
-          placeholder="any.any217"
           title="Login"
         />
         <Input
@@ -45,11 +44,10 @@ function Form() {
           onChange={setPassword}
           name="password"
           type="password"
-          placeholder="***************"
           title="Password"
         />
       </div>
-      <div>{errorBlock ? <Error /> : null} </div>
+      {!!errorBlock && <Error />}
       <div className={classes.buttonBox}>
         <Button
           isOrange={true}
