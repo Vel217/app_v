@@ -3,5 +3,6 @@
   text-align: center;
   margin: 10px;
   border-radius: 10px;
-  display: none;
+  justify-content: center;
+  display: flex;
 }

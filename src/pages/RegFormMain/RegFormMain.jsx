@@ -54,8 +54,6 @@ function RegFormMain() {
     }
     if (response.status === 409) {
       alert("Login already exists");
-    } else {
-      console.log("pup");
     }
   };
 
@@ -69,10 +67,8 @@ function RegFormMain() {
   const validatePhone = () => {
     if (!validPhone.test(phone)) {
       setPhoneErr(true);
-      console.log("123");
     } else {
       setPhoneErr(false);
-      console.log("456");
     }
   };
   const validateFName = () => {
@@ -89,15 +85,6 @@ function RegFormMain() {
       setSNameError(false);
     }
   };
-
-  // if (
-  //   (!setEmailErr && !setPhoneErr && !setFNameError && !setSNameError) ===
-  //   disabled
-  // ) {
-  //   setDisabled(true);
-  // } else {
-  //   setDisabled(false);
-  // }
 
   return (
     <>
