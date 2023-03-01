@@ -3,7 +3,7 @@ import Button from "../../components/Button/Button";
 import HaveAcc from "./HaveAcc";
 import Title from "../../components/Title/Title";
 import classes from "./RegFormMain.module.css";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   validEmail,
@@ -11,6 +11,7 @@ import {
   validFName,
   validSName,
 } from "../../RegExp/RegExp.js";
+import { signUp } from "../../api/chat-api";
 
 function RegFormMain() {
   const navigate = useNavigate();
@@ -24,37 +25,28 @@ function RegFormMain() {
   const [phoneErr, setPhoneErr] = useState(true);
   const [nameFErr, setFNameError] = useState(true);
   const [nameSErr, setSNameError] = useState(true);
+  const isDisabled = useMemo(() => {
+    return (
+      emailErr ||
+      phoneErr ||
+      nameFErr ||
+      nameSErr ||
+      !(password.length > 1) ||
+      !(login.length > 1)
+    );
+  }, [emailErr, phoneErr, nameFErr, nameSErr, password, login]);
 
-  const click = async () => {
-    const host = "https://ya-praktikum.tech";
-    const url = `${host}/api/v2/auth/signup`;
-    const data = {
-      first_name: firstName,
-      second_name: secondName,
-      login: login,
-      email: email,
-      phone: phone,
-      password: password,
-    };
-    const response = await fetch(url, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
+  // create form atrib in Form
+
+  const click = () => {
+    signUp(firstName, secondName, login, email, phone, password).then((res) => {
+      if (res.status === 200) {
+        navigate("/chat");
+      }
+      if (res.status === 409) {
+        alert("Login already exists");
+      }
     });
-
-    console.log(data);
-
-    console.log(response);
-
-    if (response.status === 200) {
-      navigate("/chat");
-    }
-    if (response.status === 409) {
-      alert("Login already exists");
-    }
   };
 
   const validateEmail = () => {
@@ -98,7 +90,7 @@ function RegFormMain() {
           title="Email"
           name="email"
           onKeyUp={validateEmail}
-          errorText={email === "" || !emailErr ? "" : "Your email is invalid"}
+          errorText={!email || !emailErr ? "" : "Your email is invalid"}
         />
 
         <Input
@@ -118,7 +110,7 @@ function RegFormMain() {
           name="first_name"
           onKeyUp={validateFName}
           errorText={
-            firstName === "" || !nameFErr ? "" : "Your first name is invalid"
+            !firstName || !nameFErr ? "" : "Your first name is invalid"
           }
         />
         <Input
@@ -130,7 +122,7 @@ function RegFormMain() {
           name="second_name"
           onKeyUp={validateSName}
           errorText={
-            secondName === "" || !nameSErr ? "" : "Your last name is invalid"
+            !secondName || !nameSErr ? "" : "Your last name is invalid"
           }
         />
         <Input
@@ -141,7 +133,7 @@ function RegFormMain() {
           title="Phone"
           name="phone"
           onKeyUp={validatePhone}
-          errorText={phone === "" || !phoneErr ? "" : "Your phone is invalid"}
+          errorText={!phone || !phoneErr ? "" : "Your phone is invalid"}
         />
 
         <Input
@@ -151,23 +143,11 @@ function RegFormMain() {
           placeholder="*************"
           title="Password"
           name="password"
-          required={true}
         />
       </div>
 
       <div className={classes.buttonBox}>
-        <Button
-          onClick={click}
-          isOrange={true}
-          disabled={
-            emailErr ||
-            phoneErr ||
-            nameFErr ||
-            nameSErr ||
-            !(password.length > 1) ||
-            !(login.length > 1)
-          }
-        >
+        <Button onClick={click} isOrange={true} disabled={isDisabled}>
           CREATE
         </Button>
       </div>

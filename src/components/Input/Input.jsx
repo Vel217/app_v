@@ -6,11 +6,11 @@ function Input({
   value,
   onChange,
   onKeyUp,
-  onBlur,
   type,
   placeholder,
   disabled,
   errorText,
+  name,
 }) {
   return (
     <div className={classes.inputWrapper}>
@@ -22,12 +22,11 @@ function Input({
             onChange(e.target.value);
           }}
           onKeyUp={onKeyUp}
-          onBlur={onBlur}
           className={classes.input}
           type={type}
           placeholder={placeholder}
           disabled={disabled}
-          required="required"
+          name={name}
         />
       </label>
       {!!errorText && <p className={classes.errorText}>{errorText}</p>}

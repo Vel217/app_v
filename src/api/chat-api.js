@@ -1,16 +1,46 @@
-// export const login = (props) => {
-//   let getId = new XMLHttpRequest();
+export const signIn = async (login, password) => {
+  const host = "https://ya-praktikum.tech";
+  const url = `${host}/api/v2/auth/signin`;
+  const data = {
+    login,
+    password,
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response;
+};
 
-//   getId.open("POST", "https://ya-praktikum.tech/api/v2/auth/signup");
-
-//   try {
-//     getId.send(props);
-//     if (getId.status != 200) {
-//       console.log(`Ошибка ${getId.status}: ${getId.statusText}`);
-//     } else {
-//       console.log(getId.response);
-//     }
-//   } catch (err) {
-//     console.log("Запрос не удался");
-//   }
-// };
+export const signUp = async (
+  firstName,
+  secondName,
+  login,
+  email,
+  phone,
+  password
+) => {
+  const host = "https://ya-praktikum.tech";
+  const url = `${host}/api/v2/auth/signup`;
+  const data = {
+    first_name: firstName,
+    second_name: secondName,
+    login: login,
+    email: email,
+    phone: phone,
+    password: password,
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response;
+};

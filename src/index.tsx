@@ -18,8 +18,6 @@ import Error500 from "./pages/500/Error500";
 import Form from "./pages/RegForm/Form";
 import Card from "./components/Card/Card";
 
-// import { login } from "./api/chat-api";
-
 const router = createBrowserRouter([
   {
     path: "/chat",

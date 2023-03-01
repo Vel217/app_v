@@ -5,6 +5,7 @@ import Title from "../../components/Title/Title";
 import { useNavigate } from "react-router-dom";
 import classes from "../RegFormMain/RegFormMain.module.css";
 import { useState } from "react";
+import { signIn } from "../../api/chat-api";
 
 function Form() {
   const navigate = useNavigate();
@@ -13,26 +14,8 @@ function Form() {
   const [password, setPassword] = useState("");
   const [errorBlock, setErrorBlock] = useState(false);
 
-  const signIn = async () => {
-    const host = "https://ya-praktikum.tech";
-    const url = `${host}/api/v2/auth/signin`;
-    const data = {
-      login: login,
-      password: password,
-    };
-    const response = await fetch(url, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    return response;
-  };
-
   const click = () => {
-    signIn().then((res) => {
+    signIn(login, password).then((res) => {
       if (res.status === 200) {
         navigate("/chat");
       }
@@ -40,15 +23,19 @@ function Form() {
         setErrorBlock(true);
       }
     });
+    setLogin("");
+    setPassword("");
   };
 
   return (
     <>
       <div>
         <Title>Hello!</Title>
+
         <Input
           value={login}
           onChange={setLogin}
+          name="login"
           type="text"
           placeholder="any.any217"
           title="Login"
@@ -56,6 +43,7 @@ function Form() {
         <Input
           value={password}
           onChange={setPassword}
+          name="password"
           type="password"
           placeholder="***************"
           title="Password"
@@ -67,9 +55,11 @@ function Form() {
           isOrange={true}
           onClick={click}
           disabled={password.length < 1 || login.length < 1}
+          type="submit"
         >
           Let`s go CHATING
         </Button>
+
         <Button isGreen={true} onClick={() => navigate("/create")}>
           Create an account
         </Button>
