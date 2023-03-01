@@ -1,54 +1,150 @@
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import HaveAcc from "./HaveAcc";
-
 import Title from "../../components/Title/Title";
-
 import classes from "./RegFormMain.module.css";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  validEmail,
+  validPhone,
+  validFName,
+  validSName,
+} from "../../RegExp/RegExp.js";
+import { signUp } from "../../api/chat-api";
 
 function RegFormMain() {
   const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [secondName, setSecondName] = useState("");
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [emailErr, setEmailErr] = useState(true);
+  const [phoneErr, setPhoneErr] = useState(true);
+  const [nameFErr, setFNameError] = useState(true);
+  const [nameSErr, setSNameError] = useState(true);
+  const isDisabled = useMemo(() => {
+    return (
+      emailErr ||
+      phoneErr ||
+      nameFErr ||
+      nameSErr ||
+      !(password.length > 1) ||
+      !(login.length > 1)
+    );
+  }, [emailErr, phoneErr, nameFErr, nameSErr, password, login]);
+
+  // create form atrib in Form
+
+  const click = () => {
+    signUp(firstName, secondName, login, email, phone, password).then((res) => {
+      if (res.status === 200) {
+        navigate("/chat");
+      }
+      if (res.status === 409) {
+        alert("Login already exists");
+      }
+    });
+  };
+
+  const validateEmail = () => {
+    const isEmailValid = validEmail.test(email);
+    setEmailErr(!isEmailValid);
+  };
+  const validatePhone = () => {
+    if (!validPhone.test(phone)) {
+      setPhoneErr(true);
+    } else {
+      setPhoneErr(false);
+    }
+  };
+  const validateFName = () => {
+    if (!validFName.test(firstName)) {
+      setFNameError(true);
+    } else {
+      setFNameError(false);
+    }
+  };
+  const validateSName = () => {
+    if (!validSName.test(secondName)) {
+      setSNameError(true);
+    } else {
+      setSNameError(false);
+    }
+  };
 
   return (
     <>
       <div>
         <Title>Create an account:</Title>
         <Input
-          id="login"
+          value={email}
+          onChange={setEmail}
           type="email"
           placeholder="any.any@mail.com"
           title="Email"
+          name="email"
+          onKeyUp={validateEmail}
+          errorText={!email || !emailErr ? "" : "Your email is invalid"}
         />
-        <Input id="login" type="text" placeholder="LoginName" title="Login" />
+
         <Input
-          id="firstName"
+          value={login}
+          onChange={setLogin}
+          type="text"
+          placeholder="LoginName"
+          title="Login"
+          name="login"
+        />
+        <Input
+          value={firstName}
+          onChange={setFirstName}
           type="text"
           placeholder="First Name"
           title="First Name"
+          name="first_name"
+          onKeyUp={validateFName}
+          errorText={
+            !firstName || !nameFErr ? "" : "Your first name is invalid"
+          }
         />
         <Input
-          id="lastName"
+          value={secondName}
+          onChange={setSecondName}
           type="text"
           placeholder="Last Name"
           title="Last Name"
+          name="second_name"
+          onKeyUp={validateSName}
+          errorText={
+            !secondName || !nameSErr ? "" : "Your last name is invalid"
+          }
         />
         <Input
-          id="phoneNumber"
+          value={phone}
+          onChange={setPhone}
           type="tel"
-          placeholder="+9(999)999-99-99"
+          placeholder="In format '9(999)999-99-99'"
           title="Phone"
+          name="phone"
+          onKeyUp={validatePhone}
+          errorText={!phone || !phoneErr ? "" : "Your phone is invalid"}
         />
+
         <Input
-          id="passCreate"
+          value={password}
+          onChange={setPassword}
           type="password"
           placeholder="*************"
           title="Password"
+          name="password"
         />
       </div>
 
       <div className={classes.buttonBox}>
-        <Button onClick={() => navigate("/chat")} isOrange={true}>
+        <Button onClick={click} isOrange={true} disabled={isDisabled}>
           CREATE
         </Button>
       </div>

@@ -7,9 +7,9 @@ function HaveAcc() {
   return (
     <div>
       Already have an account?
-      <div className={classes.nav} onClick={() => navigate("/")}>
+      <button className={classes.nav} onClick={() => navigate("/")}>
         Sign in
-      </div>
+      </button>
     </div>
   );
 }

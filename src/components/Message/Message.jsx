@@ -14,7 +14,7 @@ function Message(prop) {
         className={classes.message_avatar}
         alt="avatar"
         height="20px"
-      ></img>
+      />
 
       <p className={classes.message_text}>{prop.children}</p>
 

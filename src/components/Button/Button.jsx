@@ -1,6 +1,6 @@
 import classes from "./Button.module.css";
 
-function Button({ children, ...props }) {
+function Button({ children, type = "button", ...props }) {
   // TODO: use enums
   const getClassColor = () => {
     if (props.isGreen) {
@@ -19,6 +19,8 @@ function Button({ children, ...props }) {
     <button
       onClick={props.onClick}
       className={`${classes.button} ${getClassColor()}`}
+      disabled={props.disabled}
+      type={type}
     >
       {children}
     </button>

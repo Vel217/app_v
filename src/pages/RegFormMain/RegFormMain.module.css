@@ -8,4 +8,6 @@
 .nav {
   text-decoration: underline;
   color: blue;
+  font-size: 18px;
+  margin-left: 20px;
 }
