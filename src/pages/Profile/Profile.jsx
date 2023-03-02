@@ -1,12 +1,41 @@
 import AvatarPhoto from "../../components/AvatarPhoto/AvatarPhoto";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
-
 import classes from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { profile, logOut } from "../../api/chat-api";
 
 function Profile(props) {
   const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [secondName, setSecondName] = useState("");
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+
+  useEffect(() => {
+    profile()
+      .then((resp) => resp.json())
+      .then((data) => {
+        setEmail(data.email);
+        setFirstName(data.first_name);
+        setSecondName(data.second_name);
+        setLogin(data.login);
+        setPhone(data.phone);
+      });
+  }, []);
+
+  const click = () => {
+    logOut().then((resp) => {
+      if (resp.status === 200) {
+        navigate("/");
+      }
+    });
+  };
+
   return (
     <div className={classes.wrap}>
       <div className={classes.avatar}>
@@ -15,46 +44,55 @@ function Profile(props) {
       </div>
       <div className={classes.form}>
         <Input
-          id="login"
+          value={email}
+          onChange={setEmail}
           type="email"
-          placeholder="any.any@mail.com"
           title="Email"
           disabled={props.isChange ? null : "disabled"}
         />
         <Input
-          id="login"
+          value={login}
+          onChange={setLogin}
           type="text"
-          placeholder="LoginName"
           title="Login"
           disabled={props.isChange ? null : "disabled"}
         />
         <Input
-          id="firstName"
+          value={firstName}
+          onChange={setFirstName}
           type="text"
-          placeholder="First Name"
           title="First Name"
           disabled={props.isChange ? null : "disabled"}
         />
         <Input
-          id="lastName"
+          value={secondName}
+          onChange={setSecondName}
           type="text"
-          placeholder="Last Name"
           title="Last Name"
           disabled={props.isChange ? null : "disabled"}
         />
         <Input
-          id="phoneNumber"
-          type="tel"
-          placeholder="+9(999)999-99-99"
+          value={phone}
+          onChange={setPhone}
+          type="text"
           title="Phone"
           disabled={props.isChange ? null : "disabled"}
         />
         {props.isChange && (
           <Input
-            id="passCreate"
+            value={oldPassword}
+            onChange={setOldPassword}
             type="password"
-            placeholder="*************"
-            title="Password"
+            placeholder="*****"
+            title="Old Password"
+          />
+        )}
+        {props.isChange && (
+          <Input
+            value={newPassword}
+            onChange={setNewPassword}
+            type="password"
+            title="New Password"
           />
         )}
       </div>
@@ -67,7 +105,11 @@ function Profile(props) {
             Change Profile
           </Button>
         )}
-        {!props.isChange && <Button isRed={true}> Logout</Button>}
+        {!props.isChange && (
+          <Button isRed={true} onClick={click}>
+            Logout
+          </Button>
+        )}
         {props.isChange && <Button isOrange={true}>Save</Button>}
       </div>
     </div>

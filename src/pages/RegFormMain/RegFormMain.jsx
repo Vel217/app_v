@@ -36,8 +36,6 @@ function RegFormMain() {
     );
   }, [emailErr, phoneErr, nameFErr, nameSErr, password, login]);
 
-  // create form atrib in Form
-
   const click = () => {
     signUp(firstName, secondName, login, email, phone, password).then((res) => {
       if (res.status === 200) {
@@ -54,25 +52,16 @@ function RegFormMain() {
     setEmailErr(!isEmailValid);
   };
   const validatePhone = () => {
-    if (!validPhone.test(phone)) {
-      setPhoneErr(true);
-    } else {
-      setPhoneErr(false);
-    }
+    const isValidPhone = validPhone.test(phone);
+    setPhoneErr(!isValidPhone);
   };
   const validateFName = () => {
-    if (!validFName.test(firstName)) {
-      setFNameError(true);
-    } else {
-      setFNameError(false);
-    }
+    const isValidFName = validFName.test(firstName);
+    setFNameError(!isValidFName);
   };
   const validateSName = () => {
-    if (!validSName.test(secondName)) {
-      setSNameError(true);
-    } else {
-      setSNameError(false);
-    }
+    const isValidSName = validSName.test(secondName);
+    setSNameError(!isValidSName);
   };
 
   return (
