@@ -8,6 +8,7 @@ export const signIn = async (login, password) => {
   const response = await fetch(url, {
     method: "POST",
     mode: "cors",
+    credentials: "include",
     headers: {
       "content-type": "application/json",
     },
@@ -37,10 +38,34 @@ export const signUp = async (
   const response = await fetch(url, {
     method: "POST",
     mode: "cors",
+    credentials: "include",
     headers: {
       "content-type": "application/json",
     },
     body: JSON.stringify(data),
+  });
+  return response;
+};
+
+export const getProfile = async () => {
+  const host = "https://ya-praktikum.tech";
+  const url = `${host}/api/v2/auth/user`;
+  const response = await fetch(url, {
+    method: "GET",
+    mode: "cors",
+    credentials: "include",
+  });
+  return response;
+};
+
+export const logOut = async () => {
+  const host = "https://ya-praktikum.tech";
+  const url = `${host}/api/v2/auth/logout`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    mode: "cors",
+    credentials: "include",
   });
   return response;
 };
