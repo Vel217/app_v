@@ -4,7 +4,7 @@ import Input from "../../components/Input/Input";
 import classes from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { profile, logOut } from "../../api/chat-api";
+import { getProfile, logOut } from "../../api/chat-api";
 
 function Profile(props) {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function Profile(props) {
   const [newPassword, setNewPassword] = useState("");
 
   useEffect(() => {
-    profile()
+    getProfile()
       .then((resp) => resp.json())
       .then((data) => {
         setEmail(data.email);

@@ -47,7 +47,7 @@ export const signUp = async (
   return response;
 };
 
-export const profile = async () => {
+export const getProfile = async () => {
   const host = "https://ya-praktikum.tech";
   const url = `${host}/api/v2/auth/user`;
   const response = await fetch(url, {
