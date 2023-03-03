@@ -3,8 +3,19 @@ import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import classes from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getProfile, logOut } from "../../api/chat-api";
+import { useState, useEffect, useMemo } from "react";
+import {
+  changePassword,
+  changeProfile,
+  getProfile,
+  logOut,
+} from "../../api/chat-api";
+import {
+  validEmail,
+  validPhone,
+  validFName,
+  validSName,
+} from "../../RegExp/RegExp.js";
 
 function Profile(props) {
   const navigate = useNavigate();
@@ -15,6 +26,10 @@ function Profile(props) {
   const [phone, setPhone] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [emailErr, setEmailErr] = useState(true);
+  const [phoneErr, setPhoneErr] = useState(true);
+  const [nameFErr, setFNameError] = useState(true);
+  const [nameSErr, setSNameError] = useState(true);
 
   useEffect(() => {
     getProfile()
@@ -35,6 +50,46 @@ function Profile(props) {
       }
     });
   };
+  const save = () => {
+    if (newPassword.length > 1) {
+      changePassword(oldPassword, newPassword).then((resp) => {
+        if (resp.status === 200) {
+          alert("changeProfilePassword");
+        }
+      });
+    }
+    changeProfile(firstName, secondName, login, email, phone).then((resp) => {
+      if (resp.status === 200) {
+        alert("changeProfileWithoutPassword");
+      }
+    });
+  };
+  const isDisabled = useMemo(() => {
+    return emailErr || phoneErr || nameFErr || nameSErr || !(login.length > 1);
+  }, [emailErr, phoneErr, nameFErr, nameSErr, login]);
+
+  const isDisabledPassword = useMemo(() => {
+    return oldPassword.length < 1 || newPassword.length < 1;
+  }, [oldPassword, newPassword]);
+
+  useEffect(() => {
+    const isEmailValid = validEmail.test(email);
+    setEmailErr(!isEmailValid);
+  }, [email]);
+
+  useEffect(() => {
+    const isValidPhone = validPhone.test(phone);
+    setPhoneErr(!isValidPhone);
+  }, [phone]);
+  useEffect(() => {
+    const isValidFName = validFName.test(firstName);
+    setFNameError(!isValidFName);
+  }, [firstName]);
+
+  useEffect(() => {
+    const isValidSName = validSName.test(secondName);
+    setSNameError(!isValidSName);
+  }, [secondName]);
 
   return (
     <div className={classes.wrap}>
@@ -48,6 +103,7 @@ function Profile(props) {
           onChange={setEmail}
           type="email"
           title="Email"
+          // onKeyUp={validateEmail}
           disabled={props.isChange ? null : "disabled"}
         />
         <Input
@@ -62,6 +118,7 @@ function Profile(props) {
           onChange={setFirstName}
           type="text"
           title="First Name"
+          // onKeyUp={validateFName}
           disabled={props.isChange ? null : "disabled"}
         />
         <Input
@@ -69,6 +126,7 @@ function Profile(props) {
           onChange={setSecondName}
           type="text"
           title="Last Name"
+          // onKeyUp={validateSName}
           disabled={props.isChange ? null : "disabled"}
         />
         <Input
@@ -76,6 +134,7 @@ function Profile(props) {
           onChange={setPhone}
           type="text"
           title="Phone"
+          // onKeyUp={validatePhone}
           disabled={props.isChange ? null : "disabled"}
         />
         {props.isChange && (
@@ -110,7 +169,15 @@ function Profile(props) {
             Logout
           </Button>
         )}
-        {props.isChange && <Button isOrange={true}>Save</Button>}
+        {props.isChange && (
+          <Button
+            isOrange={true}
+            onClick={save}
+            disabled={isDisabled || isDisabledPassword}
+          >
+            Save
+          </Button>
+        )}
       </div>
     </div>
   );

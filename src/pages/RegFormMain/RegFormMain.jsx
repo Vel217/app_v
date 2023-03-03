@@ -3,7 +3,7 @@ import Button from "../../components/Button/Button";
 import HaveAcc from "./HaveAcc";
 import Title from "../../components/Title/Title";
 import classes from "./RegFormMain.module.css";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   validEmail,
@@ -25,6 +25,7 @@ function RegFormMain() {
   const [phoneErr, setPhoneErr] = useState(true);
   const [nameFErr, setFNameError] = useState(true);
   const [nameSErr, setSNameError] = useState(true);
+
   const isDisabled = useMemo(() => {
     return (
       emailErr ||
@@ -46,23 +47,24 @@ function RegFormMain() {
       }
     });
   };
-
-  const validateEmail = () => {
+  useEffect(() => {
     const isEmailValid = validEmail.test(email);
     setEmailErr(!isEmailValid);
-  };
-  const validatePhone = () => {
+  }, [email]);
+
+  useEffect(() => {
     const isValidPhone = validPhone.test(phone);
     setPhoneErr(!isValidPhone);
-  };
-  const validateFName = () => {
+  }, [phone]);
+  useEffect(() => {
     const isValidFName = validFName.test(firstName);
     setFNameError(!isValidFName);
-  };
-  const validateSName = () => {
+  }, [firstName]);
+
+  useEffect(() => {
     const isValidSName = validSName.test(secondName);
     setSNameError(!isValidSName);
-  };
+  }, [secondName]);
 
   return (
     <>
@@ -75,7 +77,6 @@ function RegFormMain() {
           placeholder="any.any@mail.com"
           title="Email"
           name="email"
-          onKeyUp={validateEmail}
           errorText={!email || !emailErr ? "" : "Your email is invalid"}
         />
 
@@ -94,7 +95,6 @@ function RegFormMain() {
           placeholder="First Name"
           title="First Name"
           name="first_name"
-          onKeyUp={validateFName}
           errorText={
             !firstName || !nameFErr ? "" : "Your first name is invalid"
           }
@@ -106,7 +106,6 @@ function RegFormMain() {
           placeholder="Last Name"
           title="Last Name"
           name="second_name"
-          onKeyUp={validateSName}
           errorText={
             !secondName || !nameSErr ? "" : "Your last name is invalid"
           }
@@ -118,7 +117,6 @@ function RegFormMain() {
           placeholder="In format '9(999)999-99-99'"
           title="Phone"
           name="phone"
-          onKeyUp={validatePhone}
           errorText={!phone || !phoneErr ? "" : "Your phone is invalid"}
         />
 

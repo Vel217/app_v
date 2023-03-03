@@ -10,6 +10,8 @@ function Input({
   placeholder,
   disabled,
   errorText,
+  onBlur,
+
   name,
 }) {
   return (
@@ -22,6 +24,7 @@ function Input({
             onChange(e.target.value);
           }}
           onKeyUp={onKeyUp}
+          onBlur={onBlur}
           className={classes.input}
           type={type}
           placeholder={placeholder}
