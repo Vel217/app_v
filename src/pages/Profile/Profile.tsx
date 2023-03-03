@@ -17,7 +17,7 @@ import {
   validSName,
 } from "../../RegExp/RegExp.js";
 
-function Profile(props) {
+function Profile(props: { isChange?: boolean }) {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [secondName, setSecondName] = useState("");
@@ -30,6 +30,8 @@ function Profile(props) {
   const [phoneErr, setPhoneErr] = useState(true);
   const [nameFErr, setFNameError] = useState(true);
   const [nameSErr, setSNameError] = useState(true);
+
+  const [isFormChanged, setIsFormChanged] = useState(false);
 
   useEffect(() => {
     getProfile()
@@ -61,22 +63,32 @@ function Profile(props) {
     changeProfile(firstName, secondName, login, email, phone).then((resp) => {
       if (resp.status === 200) {
         alert("changeProfileWithoutPassword");
+        navigate("/chat/profile");
       }
     });
   };
   const isDisabled = useMemo(() => {
-    return emailErr || phoneErr || nameFErr || nameSErr || !(login.length > 1);
-  }, [emailErr, phoneErr, nameFErr, nameSErr, login]);
+    return (
+      !isFormChanged ||
+      emailErr ||
+      phoneErr ||
+      nameFErr ||
+      nameSErr ||
+      login.length < 1
+    );
+  }, [emailErr, phoneErr, nameFErr, nameSErr, login, isFormChanged]);
 
   const isDisabledPassword = useMemo(() => {
-    return oldPassword.length < 1 || newPassword.length < 1;
-  }, [oldPassword, newPassword]);
+    const firstCondition = oldPassword.length === 0 && newPassword.length === 0;
+    const secondCondition = oldPassword.length > 1 && newPassword.length > 1;
+
+    return !(firstCondition || secondCondition) || !isFormChanged;
+  }, [oldPassword, newPassword, isFormChanged]);
 
   useEffect(() => {
     const isEmailValid = validEmail.test(email);
     setEmailErr(!isEmailValid);
   }, [email]);
-
   useEffect(() => {
     const isValidPhone = validPhone.test(phone);
     setPhoneErr(!isValidPhone);
@@ -85,11 +97,22 @@ function Profile(props) {
     const isValidFName = validFName.test(firstName);
     setFNameError(!isValidFName);
   }, [firstName]);
-
   useEffect(() => {
     const isValidSName = validSName.test(secondName);
     setSNameError(!isValidSName);
   }, [secondName]);
+
+  const onChange = (setState: (value: string) => void) => {
+    return (value: string) => {
+      if (!isFormChanged) {
+        setIsFormChanged(true);
+      }
+      if (value === "") {
+        setIsFormChanged(false);
+      }
+      setState(value);
+    };
+  };
 
   return (
     <div className={classes.wrap}>
@@ -100,59 +123,59 @@ function Profile(props) {
       <div className={classes.form}>
         <Input
           value={email}
-          onChange={setEmail}
-          type="email"
+          onChange={onChange(setEmail)}
           title="Email"
-          // onKeyUp={validateEmail}
-          disabled={props.isChange ? null : "disabled"}
+          disabled={!props.isChange}
+          errorText={!email || !emailErr ? "" : "Your email is invalid"}
         />
         <Input
           value={login}
-          onChange={setLogin}
-          type="text"
+          onChange={onChange(setLogin)}
           title="Login"
-          disabled={props.isChange ? null : "disabled"}
+          disabled={!props.isChange}
         />
         <Input
           value={firstName}
-          onChange={setFirstName}
-          type="text"
+          onChange={onChange(setFirstName)}
           title="First Name"
-          // onKeyUp={validateFName}
-          disabled={props.isChange ? null : "disabled"}
+          disabled={!props.isChange}
+          errorText={
+            !firstName || !nameFErr ? "" : "Your first name is invalid"
+          }
         />
         <Input
           value={secondName}
-          onChange={setSecondName}
-          type="text"
+          onChange={onChange(setSecondName)}
           title="Last Name"
-          // onKeyUp={validateSName}
-          disabled={props.isChange ? null : "disabled"}
+          disabled={!props.isChange}
+          errorText={
+            !secondName || !nameSErr ? "" : "Your last name is invalid"
+          }
         />
         <Input
           value={phone}
-          onChange={setPhone}
-          type="text"
+          onChange={onChange(setPhone)}
           title="Phone"
-          // onKeyUp={validatePhone}
-          disabled={props.isChange ? null : "disabled"}
+          disabled={!props.isChange}
+          errorText={!phone || !phoneErr ? "" : "Your phone is invalid"}
         />
+
         {props.isChange && (
-          <Input
-            value={oldPassword}
-            onChange={setOldPassword}
-            type="password"
-            placeholder="*****"
-            title="Old Password"
-          />
-        )}
-        {props.isChange && (
-          <Input
-            value={newPassword}
-            onChange={setNewPassword}
-            type="password"
-            title="New Password"
-          />
+          <>
+            <Input
+              value={oldPassword}
+              onChange={onChange(setOldPassword)}
+              type="password"
+              placeholder="*****"
+              title="Old Password"
+            />
+            <Input
+              value={newPassword}
+              onChange={onChange(setNewPassword)}
+              type="password"
+              title="New Password"
+            />
+          </>
         )}
       </div>
       <div className={classes.buttons}>

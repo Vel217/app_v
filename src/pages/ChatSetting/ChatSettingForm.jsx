@@ -1,7 +1,6 @@
 import AvatarPhoto from "../../components/AvatarPhoto/AvatarPhoto";
 import Button from "../../components/Button/Button";
 import Search from "../../components/Input/Search";
-
 import Title from "../../components/Title/Title";
 import classes from "./ChatSettingForm.module.css";
 import ContactItem from "./ContactItem";

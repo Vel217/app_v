@@ -1,18 +1,25 @@
 import classes from "./Input.module.css";
 
 function Input({
-  title,
-  id,
   value,
   onChange,
-  onKeyUp,
-  type,
-  placeholder,
+  type = "text",
+  title,
   disabled,
   errorText,
-  onBlur,
-
   name,
+  id,
+  placeholder,
+}: {
+  value: string;
+  onChange: (e: string) => void;
+  type?: "text" | "password";
+  title: string;
+  disabled?: boolean;
+  errorText?: string;
+  name?: string;
+  id?: string;
+  placeholder?: string;
 }) {
   return (
     <div className={classes.inputWrapper}>
@@ -21,10 +28,8 @@ function Input({
         <input
           value={value}
           onInput={(e) => {
-            onChange(e.target.value);
+            onChange((e.target as HTMLInputElement).value);
           }}
-          onKeyUp={onKeyUp}
-          onBlur={onBlur}
           className={classes.input}
           type={type}
           placeholder={placeholder}
