@@ -69,3 +69,53 @@ export const logOut = async () => {
   });
   return response;
 };
+
+export const changeProfile = async (
+  firstName,
+  secondName,
+  login,
+  email,
+  phone
+) => {
+  const host = "https://ya-praktikum.tech";
+  const url = `${host}/api/v2/user/profile`;
+  const data = {
+    first_name: firstName,
+    second_name: secondName,
+    login: login,
+    email: email,
+    phone: phone,
+    display_name: `${firstName} ${secondName}`,
+  };
+  const response = await fetch(url, {
+    method: "PUT",
+    mode: "cors",
+    credentials: "include",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  console.log(JSON.stringify(data));
+  return response;
+};
+
+export const changePassword = async (oldPassword, newPassword) => {
+  const host = "https://ya-praktikum.tech";
+  const url = `${host}/api/v2/user/password`;
+  const data = {
+    oldPassword: oldPassword,
+    newPassword: newPassword,
+  };
+  const response = await fetch(url, {
+    method: "PUT",
+    mode: "cors",
+    credentials: "include",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  console.log(JSON.stringify(data));
+  return response;
+};
