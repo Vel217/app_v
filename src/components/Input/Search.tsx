@@ -2,11 +2,19 @@ import React from "react";
 import classes from "./Search.module.css";
 import searchImg from "../../assets/search.svg";
 
-function Search(props) {
+function Search({
+  value,
+  onChange,
+  isSearch,
+}: {
+  value: string;
+  onChange: (e: string) => void;
+  isSearch?: boolean;
+}) {
   return (
     <div className={classes.inputArea}>
       <label>
-        {props.isSearch && (
+        {isSearch && (
           <img
             className={classes.searchImg}
             src={searchImg}
@@ -16,10 +24,14 @@ function Search(props) {
         )}
         <input
           className={`${classes.input} ${
-            props.isSearch ? classes.inputSearch : classes.inputText
+            isSearch ? classes.inputSearch : classes.inputText
           }`}
+          value={value}
+          onInput={(e) => {
+            onChange((e.target as HTMLInputElement).value);
+          }}
           type="text"
-          placeholder={props.isSearch ? "Search ..." : "name of your chat"}
+          placeholder={isSearch ? "Search ..." : "name of your chat"}
         />
       </label>
     </div>

@@ -96,7 +96,7 @@ export const changeProfile = async (
     },
     body: JSON.stringify(data),
   });
-  console.log(JSON.stringify(data));
+
   return response;
 };
 
@@ -116,6 +116,64 @@ export const changePassword = async (oldPassword, newPassword) => {
     },
     body: JSON.stringify(data),
   });
-  console.log(JSON.stringify(data));
+
+  return response;
+};
+
+export const createChat = async (nameChat) => {
+  const host = "https://ya-praktikum.tech";
+  const url = `${host}/api/v2/chats`;
+  const data = {
+    title: nameChat,
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    mode: "cors",
+    credentials: "include",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return response;
+};
+
+export const searchUser = async (personName) => {
+  const host = "https://ya-praktikum.tech";
+  const url = `${host}/api/v2/user/search`;
+  const data = {
+    login: personName,
+  };
+  const response = await fetch(url, {
+    method: "POST",
+    mode: "cors",
+    credentials: "include",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return response;
+};
+
+export const addUserToChat = async (personId, chatId) => {
+  const host = "https://ya-praktikum.tech";
+  const url = `${host}/api/v2/chats/users`;
+  const data = {
+    users: [personId],
+    chatId: chatId,
+  };
+  const response = await fetch(url, {
+    method: "PUT",
+    mode: "cors",
+    credentials: "include",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
   return response;
 };
