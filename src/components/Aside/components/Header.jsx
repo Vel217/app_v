@@ -20,10 +20,11 @@ function Header() {
           onClick={() => setModalActive(true)}
         />
       </button>
-
-      <Modal active={modalActive} setActive={setModalActive}>
-        <CreateChat />
-      </Modal>
+      {modalActive && (
+        <Modal active={modalActive} setActive={setModalActive}>
+          <CreateChat />
+        </Modal>
+      )}
     </div>
   );
 }

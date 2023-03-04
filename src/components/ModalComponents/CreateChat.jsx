@@ -11,7 +11,7 @@ function CreateChat() {
   const [chatId, setChatId] = useState(null);
   const [personName, setPersonName] = useState("");
   const [personsList, setPersonsList] = useState([]);
-  const [personsId, setPersonsId] = useState("");
+  const [usersToAdd, setUsersToAdd] = useState([]);
 
   const onCreate = () => {
     createChat(nameChat)
@@ -24,19 +24,26 @@ function CreateChat() {
     searchUser(personName)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         return setPersonsList(data);
       });
   };
 
-  const handleClick = (personId) => {
-    setPersonsId(personId);
-    addUserToChat(personId, chatId)
-      .then((res) => res.jason())
-      .then((data) => {
-        console.log(data);
-      });
+  const handleClickAdd = (personId) => {
+    let a = personsList.filter((item) => item.id === personId);
+    setUsersToAdd(usersToAdd.concat(a));
+
+    setPersonsList(personsList.filter((item) => item.id !== personId));
   };
+  const handleClickDelete = (personId) => {
+    let a = usersToAdd.filter((item) => item.id !== personId);
+    setUsersToAdd(a);
+  };
+
+  const onSave = () => {
+    let a = usersToAdd.map((item) => item.id);
+    addUserToChat(a, chatId);
+  };
+
   return (
     <div className={classes.wrap}>
       {!chatId && (
@@ -67,18 +74,33 @@ function CreateChat() {
               </Button>
             </div>
             <div className={classes.contactList}>
+              <p>Search person </p>
+              {personsList.length == 0 && <p>list is empty</p>}
               {personsList.map((item) => (
                 <ContactItem
                   isCreate={true}
                   firstName={item.first_name}
                   lastName={item.second_name}
                   key={item.id}
-                  keyId={item.id}
-                  onClick={handleClick}
+                  onClick={() => handleClickAdd(item.id)}
                 />
               ))}
             </div>
-            <Button isGreen={true}>Save change</Button>
+            <div className={classes.contactList}>
+              <p>Person for add</p>
+              {usersToAdd.map((item) => (
+                <ContactItem
+                  isCreate={false}
+                  firstName={item.first_name}
+                  lastName={item.second_name}
+                  key={item.id}
+                  onClick={() => handleClickDelete(item.id)}
+                />
+              ))}
+            </div>
+            <Button isGreen={true} onClick={onSave}>
+              Save change
+            </Button>
           </div>
         </>
       )}
