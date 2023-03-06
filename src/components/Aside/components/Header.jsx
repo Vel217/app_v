@@ -21,7 +21,7 @@ function Header() {
         />
       </button>
       {modalActive && (
-        <Modal active={modalActive} setActive={setModalActive}>
+        <Modal setActive={setModalActive}>
           <CreateChat />
         </Modal>
       )}

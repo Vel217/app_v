@@ -6,6 +6,7 @@
   top: 0;
   left: 0;
   z-index: 10;
+  display: flex;
 
   align-items: center;
   justify-content: center;
@@ -15,12 +16,4 @@
   border-radius: 15px;
   background-color: white;
   border: 2px solid black;
-}
-
-.modalActive {
-  display: flex;
-}
-
-.modalInactive {
-  display: none;
 }

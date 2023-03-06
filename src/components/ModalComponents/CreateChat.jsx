@@ -12,6 +12,7 @@ function CreateChat() {
   const [personName, setPersonName] = useState("");
   const [personsList, setPersonsList] = useState([]);
   const [usersToAdd, setUsersToAdd] = useState([]);
+  const [filteredPersonList, setFilteredPersonList] = useState([]);
 
   const onCreate = () => {
     createChat(nameChat)
@@ -24,24 +25,29 @@ function CreateChat() {
     searchUser(personName)
       .then((res) => res.json())
       .then((data) => {
-        return setPersonsList(data);
+        let userToAddId = usersToAdd.map((item) => item.id);
+        let difference = data.filter((x) => {
+          return !userToAddId.includes(x.id);
+        });
+        setFilteredPersonList(difference);
+        setPersonsList(data);
       });
   };
 
   const handleClickAdd = (personId) => {
-    let a = personsList.filter((item) => item.id === personId);
-    setUsersToAdd(usersToAdd.concat(a));
+    let filteredPersons = personsList.filter((item) => item.id === personId);
+    setUsersToAdd(usersToAdd.concat(filteredPersons));
 
-    setPersonsList(personsList.filter((item) => item.id !== personId));
+    setFilteredPersonList(personsList.filter((item) => item.id !== personId));
   };
   const handleClickDelete = (personId) => {
-    let a = usersToAdd.filter((item) => item.id !== personId);
-    setUsersToAdd(a);
+    let filteredUsers = usersToAdd.filter((item) => item.id !== personId);
+    setUsersToAdd(filteredUsers);
   };
 
   const onSave = () => {
-    let a = usersToAdd.map((item) => item.id);
-    addUserToChat(a, chatId);
+    let usersId = usersToAdd.map((item) => item.id);
+    addUserToChat(usersId, chatId);
   };
 
   return (
@@ -75,8 +81,8 @@ function CreateChat() {
             </div>
             <div className={classes.contactList}>
               <p>Search person </p>
-              {personsList.length == 0 && <p>list is empty</p>}
-              {personsList.map((item) => (
+              {personsList.length === 0 && <p>list is empty</p>}
+              {filteredPersonList.map((item) => (
                 <ContactItem
                   isCreate={true}
                   firstName={item.first_name}
