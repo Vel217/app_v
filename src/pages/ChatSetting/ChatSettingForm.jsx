@@ -5,25 +5,21 @@ import Title from "../../components/Title/Title";
 import classes from "./ChatSettingForm.module.css";
 import ContactItem from "./ContactItem";
 
-function ChatSettingForm(props) {
+function ChatSettingForm() {
   return (
     <div className={classes.wrap}>
       <div className={classes.avatar}>
-        {!props.isCreate && <AvatarPhoto />}
-        <Title> {props.isCreate ? "Create a chat" : "Chat Name"}</Title>
+        <AvatarPhoto />
+        <Title>Name of chat</Title>
       </div>
       <div className={classes.inputArea}>
         <Search />
-        <Button isGreen={true}>
-          {props.isCreate ? "Save Name" : "Change Name"}
-        </Button>
+        <Button isGreen={true}>Change Name</Button>
       </div>
       <div className={classes.contactList}>
-        <ContactItem isCreate={props.isCreate} />
+        <ContactItem />
       </div>
-      <Button isRed={!props.isCreate} isGreen={props.isCreate}>
-        {props.isCreate ? "Create" : "Delete Chat"}
-      </Button>
+      <Button isRed={true}>Delete Chat</Button>
     </div>
   );
 }
