@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Message from "../Message/Message";
 
 import SideBarDown from "../SideBar/SideBarDown";
@@ -5,6 +8,20 @@ import SideBarUp from "../SideBar/SideBarUp";
 import classes from "./ChatFrame.module.css";
 
 function ChatFrame() {
+  // const [url, setUrl] = useState("");
+  // useEffect(() => {
+  //   let fullUrl = window.location.href;
+  //   let a = fullUrl.lastIndexOf("/");
+  //   setUrl(fullUrl.slice(a + 1));
+  // }, [url]);
+  const location = useLocation();
+
+  const [url, setUrl] = useState(location.pathname);
+  useEffect(() => {
+    setUrl(location.pathname);
+    console.log(url);
+  }, [location.pathname]);
+
   return (
     <div className={classes.window}>
       <div className={classes.rightColumn}>

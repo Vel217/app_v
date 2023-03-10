@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./Aside.module.css";
 import Chats from "./components/Chats";
 import Footer from "./components/Footer";
