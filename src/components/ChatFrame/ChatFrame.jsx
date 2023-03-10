@@ -8,12 +8,6 @@ import SideBarUp from "../SideBar/SideBarUp";
 import classes from "./ChatFrame.module.css";
 
 function ChatFrame() {
-  // const [url, setUrl] = useState("");
-  // useEffect(() => {
-  //   let fullUrl = window.location.href;
-  //   let a = fullUrl.lastIndexOf("/");
-  //   setUrl(fullUrl.slice(a + 1));
-  // }, [url]);
   const location = useLocation();
 
   const [url, setUrl] = useState(location.pathname);
