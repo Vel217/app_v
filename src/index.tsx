@@ -1,9 +1,8 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import RegFormMain from "./pages/RegFormMain/RegFormMain";
 import "./index.css";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import ChatWindow from "./pages/ChatWindow/ChatWindow";
 import ChatFrame from "./components/ChatFrame/ChatFrame";
@@ -18,73 +17,34 @@ import Error500 from "./pages/500/Error500";
 import Form from "./pages/RegForm/Form";
 import Card from "./components/Card/Card";
 
-const router = createBrowserRouter([
-  {
-    path: "/chat",
-    element: <ChatWindow />,
-    children: [
-      {
-        path: "",
-        element: <StartChat />,
-      },
-      {
-        path: "start/:id",
-        element: <ChatFrame />,
-        children: [
-          {
-            path: "setting",
-            element: <SettingWrap />,
-            children: [
-              {
-                path: "",
-                element: <ChatSettingForm />,
-              },
-            ],
-          },
-        ],
-      },
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Card />}>
+          <Route path="" element={<Form />} />
+          <Route path="/create" element={<RegFormMain />} />
+        </Route>
+        <Route path="/chat" element={<ChatWindow />}>
+          <Route path="" element={<StartChat />} />
+          <Route path="start/:id" element={<ChatFrame />} />
+          <Route path="start/:id/settings" element={<SettingWrap />}>
+            <Route path="" element={<ChatSettingForm />} />
+          </Route>
 
-      {
-        path: "profile",
-        element: <SettingWrap />,
-        children: [
-          {
-            path: "",
-            element: <Profile />,
-          },
-          {
-            path: "change",
-            element: <ChangeProfileForm />,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    path: "/error404",
-    element: <Error404 />,
-  },
-  {
-    path: "/error500",
-    element: <Error500 />,
-  },
-  {
-    path: "/",
-    element: <Card />,
-    children: [
-      {
-        path: "",
-        element: <Form />,
-      },
-      {
-        path: "/create",
-        element: <RegFormMain />,
-      },
-    ],
-  },
-]);
+          <Route path="profile" element={<SettingWrap />}>
+            <Route path="" element={<Profile />} />
+            <Route path="change" element={<ChangeProfileForm />} />
+          </Route>
+        </Route>
+        <Route path="/error404" element={<Error404 />} />
+        <Route path="/error500" element={<Error500 />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-root.render(<RouterProvider router={router} />);
+root.render(<App />);
