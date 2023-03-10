@@ -20,12 +20,15 @@ function Chats() {
 
   return (
     <div className={classes.chatsWrap}>
-      {chatList.map((item, e) => (
-        <div style={{ border: isActive === item.id ? "3px dotted red" : null }}>
+      {chatList.map((item) => (
+        <div
+          key={item.id + 1}
+          className={isActive === item.id ? classes.active : null}
+        >
           <ChatInstance
             chatName={item.title}
             id={item.id}
-            key={e}
+            key={item.id}
             onClick={() => handleClick(item.id)}
           />
         </div>
