@@ -11,6 +11,7 @@ function ChatInstance({ chatName, id, onClick }) {
       </div>
       <div className={classes.time}>
         <p className={classes.dataTime}>{id}</p>
+        <p className={classes.countMes}> 1 mes</p>
       </div>
     </div>
   );

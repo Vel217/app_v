@@ -153,7 +153,7 @@ export const addUserToChat = async (usersIds, chatId) => {
 };
 
 export const getChatsList = async () => {
-  const url = `${host}/chats?limit=5`;
+  const url = `${host}/chats`;
   const response = await fetch(url, {
     method: "GET",
     mode: "cors",

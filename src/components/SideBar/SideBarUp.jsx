@@ -13,7 +13,7 @@ function SideBarUp() {
       <AvatarPhoto />
 
       <p className={classes.PersonName}>User Name</p>
-      <button onClick={() => navigate("/chat/setting")}>
+      <button onClick={() => navigate("setting")}>
         <img src={settingPicImg} alt="pic" height="30px" />
       </button>
     </div>

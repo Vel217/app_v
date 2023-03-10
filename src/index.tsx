@@ -28,16 +28,18 @@ const router = createBrowserRouter([
         element: <StartChat />,
       },
       {
-        path: "start",
+        path: "start/:id",
         element: <ChatFrame />,
-      },
-      {
-        path: "setting",
-        element: <SettingWrap />,
         children: [
           {
-            path: "",
-            element: <ChatSettingForm />,
+            path: "setting",
+            element: <SettingWrap />,
+            children: [
+              {
+                path: "",
+                element: <ChatSettingForm />,
+              },
+            ],
           },
         ],
       },
